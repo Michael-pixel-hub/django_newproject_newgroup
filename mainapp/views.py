@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 from geekshop.settings import BASE_DIR
+from mainapp.models import Products, ProductsCategory
 # Create your views here.
 
 def index(request):
@@ -10,11 +11,11 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 def products(request):
-    products_json = json.load(open (f'{BASE_DIR}/mainapp/fixtures/products.json', "r"))
-    categories = ["Новинки", "Одежда", "Обувь", "Аксессуары", "Подарки"]
+    products = Products.objects.all()
+    categories = ProductsCategory.objects.all()
     context = {
         "title": "Geekshop - Каталог",
-        "products": products_json['products'],
+        "products": products,
         "categories": categories,
     }
     return render(request, 'mainapp/products.html', context)
