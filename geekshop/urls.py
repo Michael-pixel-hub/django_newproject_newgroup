@@ -19,12 +19,13 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
-from mainapp.views import index, products
+from mainapp.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('products/', include('mainapp.urls', namespace='mainapp'))
+    path('products/', include('mainapp.urls', namespace='mainapp')),
+    path('user/', include('authapp.urls', namespace='authapp')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
