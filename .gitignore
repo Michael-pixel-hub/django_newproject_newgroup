@@ -1,7 +1,3 @@
 .idea
 __pycache__/
 db.sqlite3
-geekshop
-mainapp
-manage.py
-static
